@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorBlack">#000000</color>
-    <color name="colorWrite"> #FFFFFF </color>
+    <color name="colorWhite"> #FFFFFF </color>
     <color name="farrago_blue">#3F5ED8</color>
 </resources>

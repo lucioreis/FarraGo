@@ -22,7 +22,8 @@
         <activity
             android:name=".MeusIngressos"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".GerarBoleto"></activity>
+        <activity android:name=".GerarBoleto" />
+        <activity android:name=".FragmentTab1"></activity>
     </application>
 
 </manifest>

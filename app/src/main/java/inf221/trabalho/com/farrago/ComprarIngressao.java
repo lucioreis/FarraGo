@@ -19,7 +19,8 @@ public class ComprarIngressao extends AppCompatActivity {
     }
 
     public void efetuarCompra(View v){
-        Intent it = new Intent(this, MeusIngressos.class);
+//        Intent it = new Intent(this, MeusIngressos.class);
+        Intent it = new Intent(this, GerarBoleto.class);
         startActivity(it);
     }
 }
