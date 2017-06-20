@@ -1,15 +1,12 @@
-package inf221.trabalho.com.farrago;
+package inf221.trabalho.com.farrago.controller;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+
+import inf221.trabalho.com.farrago.R;
+import inf221.trabalho.com.farrago.controller.FragmentTab1;
+import inf221.trabalho.com.farrago.controller.FragmentTab2;
 
 public class GerarBoleto extends FragmentActivity {
 

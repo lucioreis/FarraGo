@@ -1,7 +1,9 @@
-package inf221.trabalho.com.farrago;
+package inf221.trabalho.com.farrago.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import inf221.trabalho.com.farrago.R;
 
 public class MeusIngressos extends AppCompatActivity {
 

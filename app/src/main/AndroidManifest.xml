@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ComprarIngressao"
+            android:name=".controller.ComprarIngressao"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MeusIngressos"
+            android:name=".controller.MeusIngressos"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".GerarBoleto" />
-        <activity android:name=".FragmentTab1"></activity>
+        <activity android:name=".controller.GerarBoleto" />
+        <activity android:name=".controller.FragmentTab1"></activity>
     </application>
 
 </manifest>
