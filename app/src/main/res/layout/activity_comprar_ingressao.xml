@@ -1,0 +1,122 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorWrite"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="213dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/festa1"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="235dp"
+        android:layout_height="52dp"
+        android:layout_margin="10dp"
+        android:text="Comprar Ingresso"
+        android:textColor="@color/colorBlack"
+        android:layout_gravity="center_horizontal"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Festa:"
+        android:paddingLeft="50dp"
+        tools:layout_editor_absoluteY="116dp"
+        tools:layout_editor_absoluteX="30dp"
+        />
+
+    <Spinner
+        android:id="@+id/spinner_festa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
+        android:layout_margin="10dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:text="Data"
+        />
+
+    <EditText
+        android:id="@+id/data_da_festa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="50dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hora"
+        android:paddingStart="50dp"
+        />
+
+    <Spinner
+        android:id="@+id/hora_da_festa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:layout_margin="10dp"
+        />
+
+    <TextView
+        android:id="@+id/valor_do_ingresso"
+        android:paddingLeft="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:text="Forma de Pagamento"
+        android:paddingLeft="50dp"
+        android:layout_margin="10dp"
+        android:layout_weight="0.07" />
+
+    <RadioGroup
+        android:id="@+id/opcoes_de_pagamentos"
+        android:paddingLeft="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <RadioButton
+            android:id="@+id/cartao"
+            android:layout_width="222dp"
+            android:layout_height="37dp"
+            android:text="Cartão de Crédito" />
+
+        <RadioButton
+            android:id="@+id/boleto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Boleto Bancario" />
+    </RadioGroup>
+    <ImageButton
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/button_comprar"
+        android:onClick="efetuarCompra"
+        android:background="@color/colorWrite"
+        android:layout_gravity="center"
+        android:layout_weight="0.08" />
+
+</LinearLayout>
