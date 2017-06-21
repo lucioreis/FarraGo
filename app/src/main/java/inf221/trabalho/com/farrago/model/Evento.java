@@ -1,12 +1,15 @@
 package inf221.trabalho.com.farrago.model;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class Evento {
 
 	private String nomeDoEvento;
 	private String local;
 	private Date data;
 	private Time horario;
-	private Inteiro faixaEtaria;
+	private int faixaEtaria;
 	private Ingresso ingresso;
 	private int numeroDeIngressos;
 
@@ -58,7 +61,7 @@ public class Evento {
 		this.horario = horario;
 	}
 
-	public Inteiro getFaixaEtaria() {
+	public int getFaixaEtaria() {
 		return this.faixaEtaria;
 	}
 
@@ -66,7 +69,7 @@ public class Evento {
 	 * 
 	 * @param faixaEtaria
 	 */
-	public void setFaixaEtaria(Inteiro faixaEtaria) {
+	public void setFaixaEtaria(int faixaEtaria) {
 		this.faixaEtaria = faixaEtaria;
 	}
 
@@ -97,10 +100,10 @@ public class Evento {
 	/**
 	 * 
 	 * @param numeroDeIngressos
-	 * @param pre�o
+	 * @param preco
 	 * @param tipoDeIngresso
 	 */
-	public void cadastraIngressos(int numeroDeIngressos, float pre�o, int tipoDeIngresso) {
+	public void cadastraIngressos(int numeroDeIngressos, float preco, int tipoDeIngresso) {
 		// TODO - implement Evento.cadastraIngressos
 		throw new UnsupportedOperationException();
 	}

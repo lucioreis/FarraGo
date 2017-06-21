@@ -17,7 +17,7 @@ public class GerarBoleto extends FragmentActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_gerar_boleto);
-        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabs);
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
         mTabHost.addTab(

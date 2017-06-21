@@ -12,10 +12,6 @@ public class Comprador extends Perfil {
 		return this.cpf;
 	}
 
-	/**
-	 * 
-	 * @param cpf
-	 */
 	public void setCpf(int cpf) {
 		this.cpf = cpf;
 	}
@@ -24,13 +20,13 @@ public class Comprador extends Perfil {
 		return this.meusIngressos;
 	}
 
-	/**
-	 * 
-	 * @param meusIngressos
-	 */
 	public void setMeusIngressos(List<Ingresso> meusIngressos) {
 		this.meusIngressos = meusIngressos;
 	}
 
+	public void addIngresso(Ingresso ingresso){
+		if(meusIngressos == null) meusIngressos = new ArrayList<Ingresso>();
+		meusIngressos.add(ingresso);
+	}
 
 }
