@@ -28,7 +28,4 @@ public class GerarBoleto extends FragmentActivity {
                 FragmentTab2.class, null);
 
     }
-
-
-
 }
