@@ -1,5 +1,6 @@
 package inf221.trabalho.com.farrago.controller;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -11,8 +12,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import android.widget.TextView;
 
 import inf221.trabalho.com.farrago.R;
 
@@ -51,6 +50,10 @@ public class Busca extends AppCompatActivity {
 
     }
 
+    public void fazerPesquisa(View v){
+        startActivity(new Intent(this, MeusIngressos.class));
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -85,7 +88,7 @@ public class Busca extends AppCompatActivity {
     public static class BuscaTab extends Fragment {
         private int resource;
         public BuscaTab(int res){
-            resource = R.layout.busca_tab1;
+            resource = res;
         }
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstamce){
@@ -110,11 +113,11 @@ public class Busca extends AppCompatActivity {
             //return PlaceholderFragment.newInstance(position + 1);
             switch (position) {
                 case 0:
-                   return new BuscaTab(R.layout.busca_tab1);
+                   return new BuscaTab(R.layout.busca_tab_eventos);
                 case 1:
-                    return new BuscaTab(R.layout.busca_tab2);
+                    return new BuscaTab(R.layout.busca_tab_ingressos);
                 case 2:
-                    return new BuscaTab(R.layout.busca_tab3);
+                    return new BuscaTab(R.layout.busca_tab_vendedores);
                 default:
                     return null;
             }
