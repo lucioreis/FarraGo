@@ -26,7 +26,6 @@ import inf221.trabalho.com.farrago.model.Evento;
 import inf221.trabalho.com.farrago.model.Ingresso;
 
 public class MeusIngressos extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

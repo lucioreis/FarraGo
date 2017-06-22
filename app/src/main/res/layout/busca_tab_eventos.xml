@@ -74,13 +74,15 @@
             android:layout_marginEnd="50dp"
             />
     </LinearLayout>
+
     <ImageButton
+        android:id="@+id/imageButton"
         android:layout_width="144dp"
         android:layout_height="53dp"
-        android:src="@drawable/button_buscar_2"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorWhite"
         android:onClick="fazerPesquisa"
         android:scaleType="centerCrop"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/colorWhite"/>
+        android:src="@drawable/button_buscar_2" />
 
 </LinearLayout>

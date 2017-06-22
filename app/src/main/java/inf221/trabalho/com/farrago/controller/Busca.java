@@ -12,6 +12,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import inf221.trabalho.com.farrago.R;
 
@@ -26,6 +31,8 @@ public class Busca extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private static Spinner spinner;
+    private static  ArrayAdapter<String> arrayAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -39,13 +46,19 @@ public class Busca extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
+        //spinner = (Spinner) findViewById(R.id.spinner_busca_cidade);
+        List<String> nomeDeCidades = new ArrayList<>();
+        nomeDeCidades.add("acapulco");
+        nomeDeCidades.add("Viçosa");
+        //TODO = Crregar lista de cidade s do banco de dados
+       // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+//        arrayAdapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, nomeDeCidades);
+
 
 
     }

@@ -28,6 +28,9 @@ public class ResultadoDaBusca extends AppCompatActivity{
             setContentView(R.layout.activity_resultado_da_busca);
             final ListView listView = (ListView) findViewById(R.id.lista_de_ingressos);
             List<Ingresso> ingressos = new ArrayList<>();
+
+
+
             Evento evento = new Evento();
             evento.setNomeDoEvento("Festa de aniversario de Coragen o Cão Covarde");
             evento.setData(new java.sql.Date(11,11,11));
@@ -47,7 +50,6 @@ public class ResultadoDaBusca extends AppCompatActivity{
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     startActivity( ( new Intent(getBaseContext(), ComprarIngresso.class ))
                             .putExtra("evento", ((Ingresso) listView.getItemAtPosition(position)).getEvento()) );
-                    Toast.makeText(getBaseContext(), "Criar um popup de qr code aqui", Toast.LENGTH_LONG).show();
                 }
             });
     }
