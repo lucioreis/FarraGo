@@ -18,6 +18,14 @@ public class Ingresso implements Serializable {
 		this.lote = lote;
 		this.tipoDeIngresso = tipoDeIngresso;
 	}
+
+	public void setEvento(Evento e){
+		evento = e;
+	}
+	public Evento getEvento(){
+		return evento;
+	}
+
 	public Integer getNumero() {
 		return this.numero;
 	}
@@ -64,6 +72,11 @@ public class Ingresso implements Serializable {
 	 */
 	public void setTipoDeIngresso(int tipoDeIngresso) {
 		this.tipoDeIngresso = tipoDeIngresso;
+	}
+
+	@Override
+	public String toString(){
+		return evento.getNomeDoEvento();
 	}
 
 
