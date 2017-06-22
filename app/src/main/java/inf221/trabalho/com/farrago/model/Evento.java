@@ -1,9 +1,10 @@
 package inf221.trabalho.com.farrago.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Evento {
+public class Evento implements Serializable{
 
 	private String nomeDoEvento;
 	private String local;
@@ -103,9 +104,9 @@ public class Evento {
 	 * @param preco
 	 * @param tipoDeIngresso
 	 */
-	public void cadastraIngressos(int numeroDeIngressos, float preco, int tipoDeIngresso) {
-		// TODO - implement Evento.cadastraIngressos
-		throw new UnsupportedOperationException();
+	public void cadastraIngressos(int numeroDeIngressos, float preco, int lote, int tipoDeIngresso) {
+		ingresso = new Ingresso(numeroDeIngressos, preco, lote, tipoDeIngresso);
+		this.numeroDeIngressos = numeroDeIngressos;
 	}
 
 }

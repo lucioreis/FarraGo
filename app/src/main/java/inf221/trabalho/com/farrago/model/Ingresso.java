@@ -1,12 +1,23 @@
 package inf221.trabalho.com.farrago.model;
 
-public class Ingresso {
+import java.io.Serializable;
 
+public class Ingresso implements Serializable {
+
+	private Evento evento;
 	private Integer numero;
 	private Float preco;
 	private Integer lote;
 	private int tipoDeIngresso;
 
+	public Ingresso(){}
+
+	public Ingresso(int numero, float preço, int lote, int tipoDeIngresso){
+		this.numero = numero;
+		this.preco = preço;
+		this.lote = lote;
+		this.tipoDeIngresso = tipoDeIngresso;
+	}
 	public Integer getNumero() {
 		return this.numero;
 	}
@@ -55,14 +66,5 @@ public class Ingresso {
 		this.tipoDeIngresso = tipoDeIngresso;
 	}
 
-	private void determinaNumero() {
-		// TODO - implement Ingresso.determinaNumero
-		throw new UnsupportedOperationException();
-	}
-
-	private void determinaLote() {
-		// TODO - implement Ingresso.determinaLote
-		throw new UnsupportedOperationException();
-	}
 
 }

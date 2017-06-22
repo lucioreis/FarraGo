@@ -1,58 +1,58 @@
 package inf221.trabalho.com.farrago.controller;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
-
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import inf221.trabalho.com.farrago.R;
+import inf221.trabalho.com.farrago.model.Comprador;
+import inf221.trabalho.com.farrago.model.Evento;
 
-public class Busca extends AppCompatActivity {
+public class Pagamento extends FragmentActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private Intent it;
+        /**
+         * The {@link android.support.v4.view.PagerAdapter} that will provide
+         * fragments for each of the sections. We use a
+         * {@link FragmentPagerAdapter} derivative, which will keep every
+         * loaded fragment in memory. If this becomes too memory intensive, it
+         * may be best to switch to a
+         * {@link android.support.v4.app.FragmentStatePagerAdapter}.
+         */
+        private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
+        /**
+         * The {@link ViewPager} that will host the section contents.
+         */
+        private ViewPager mViewPager;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_busca);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_pagamento);
+            // Create the adapter that will return a fragment for each of the three
+            // primary sections of the activity.
+            mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+            // Set up the ViewPager with the sections adapter.
+            mViewPager = (ViewPager) findViewById(R.id.container_boleto);
+            mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_boleto);
+            tabLayout.setupWithViewPager(mViewPager);
+            it = getIntent();
 
 
-    }
-
-    public void fazerPesquisa(View v){
-        startActivity(new Intent(this, ResultadoDaBusca.class));
-    }
+        }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -85,9 +85,9 @@ public class Busca extends AppCompatActivity {
         }
     }
 
-    public static class BuscaTab extends Fragment {
+    public static class DefineLayoutToTabs extends Fragment {
         private int resource;
-        public BuscaTab(int res){
+        public DefineLayoutToTabs(int res){
             resource = res;
         }
         @Override
@@ -113,11 +113,9 @@ public class Busca extends AppCompatActivity {
             //return PlaceholderFragment.newInstance(position + 1);
             switch (position) {
                 case 0:
-                   return new BuscaTab(R.layout.busca_tab_eventos);
+                    return new DefineLayoutToTabs(R.layout.activity_fragment_tab1);
                 case 1:
-                    return new BuscaTab(R.layout.busca_tab_ingressos);
-                case 2:
-                    return new BuscaTab(R.layout.busca_tab_vendedores);
+                    return new DefineLayoutToTabs(R.layout.activity_fragment_tab2);
                 default:
                     return null;
             }
@@ -125,21 +123,35 @@ public class Busca extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2total pages.
+            return 2;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Eventos";
+                    return "Cartão";
                 case 1:
-                    return "Ingressos";
-                case 2:
-                    return "Vendedores";
+                    return "Boleto";
             }
             return null;
         }
+    }
+
+    public void efetuarCompraCartao(View v){
+        Comprador comprador = Comprador.getInstance();
+        Evento evento = (Evento) it.getSerializableExtra("evento");
+        if(evento != null)
+            comprador.addIngresso(evento.getIngresso());
+        Toast.makeText(this, "Compra realizada com sucesso", Toast.LENGTH_LONG).show();
+        Intent it2 = new Intent(this, CompradorTelaPrincipal.class);
+        it2.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        finish();
+    }
+
+    public void efetuarCompraBoleto(View v){
+        //Nessa implementação basica eles vao fazer a mesma coisa
+        efetuarCompraCartao(v);
     }
 }

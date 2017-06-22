@@ -71,4 +71,13 @@
 
             android:id="@+id/credito"/>
     </RadioGroup>
+    <ImageButton
+        android:id="@+id/comprar_por_boleto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/button_comprar"
+        android:scaleType="centerCrop"
+        android:onClick="efetuarCompraCartao"/>
 </LinearLayout>

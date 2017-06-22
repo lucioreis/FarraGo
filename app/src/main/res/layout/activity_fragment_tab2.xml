@@ -5,13 +5,15 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:background="@color/colorWhite">
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+
+    <ImageButton
+        android:id="@+id/comprar_por_boleto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:gravity="center_vertical|center_horizontal"
-        android:textStyle="bold|italic"
-        android:text="Um boleto foi enviado para o seu email!"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:src="@drawable/button_comprar"
+        android:scaleType="centerCrop"
+        android:onClick="efetuarCompraBoleto"/>
 
 </FrameLayout>

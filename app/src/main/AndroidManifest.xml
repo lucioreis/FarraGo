@@ -22,16 +22,16 @@
         <activity
             android:name=".controller.MeusIngressos"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.GerarBoleto" />
+        <activity android:name=".controller.Pagamento" />
         <activity android:name=".controller.FragmentTab1" />
+        <activity android:name=".controller.ResultadoDaBusca"/>
         <activity
-            android:name=".controller.ComprarIngressao"
+            android:name=".controller.ComprarIngresso"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controller.Busca"
             android:label="@string/title_activity_busca"
-            android:resource="@xml/searchable"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
