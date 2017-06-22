@@ -19,20 +19,6 @@ public class Organizador extends Perfil {
 		this.nomeFantasia = nomeFantasia;
 	}
 
-	public int getCpf() {
-		// TODO - implement Organizador.getCpf
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param cpf
-	 */
-	public void setCpf(int cpf) {
-		// TODO - implement Organizador.setCpf
-		throw new UnsupportedOperationException();
-	}
-
 	public String getNomeDaEmpresa() {
 		return this.nomeDaEmpresa;
 	}
@@ -46,8 +32,7 @@ public class Organizador extends Perfil {
 	}
 
 	public int getCNPJ() {
-		// TODO - implement Organizador.getCNPJ
-		throw new UnsupportedOperationException();
+		return CNPJ;
 	}
 
 	/**
@@ -55,8 +40,7 @@ public class Organizador extends Perfil {
 	 * @param CNPJ
 	 */
 	public void setCNPJ(int CNPJ) {
-		// TODO - implement Organizador.setCNPJ
-		throw new UnsupportedOperationException();
+		this.CNPJ = CNPJ;
 	}
 
 	public String getEndereco() {
