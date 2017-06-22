@@ -9,10 +9,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -31,7 +33,8 @@ public class Busca extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private static Spinner spinner;
+    private Spinner spinner;
+    private List<String> nomeDeCidades;
     private static  ArrayAdapter<String> arrayAdapter;
 
     /**
@@ -47,9 +50,6 @@ public class Busca extends AppCompatActivity {
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         //spinner = (Spinner) findViewById(R.id.spinner_busca_cidade);
-        List<String> nomeDeCidades = new ArrayList<>();
-        nomeDeCidades.add("acapulco");
-        nomeDeCidades.add("Viçosa");
         //TODO = Crregar lista de cidade s do banco de dados
        // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -98,14 +98,23 @@ public class Busca extends AppCompatActivity {
         }
     }
 
-    public static class BuscaTab extends Fragment {
+    public class BuscaTab extends Fragment {
         private int resource;
+        private Spinner spinner;
         public BuscaTab(int res){
             resource = res;
         }
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstamce){
-            return inflater.inflate(resource, container, false);
+            View view =  inflater.inflate(resource, container, false);
+            spinner = (Spinner) view.findViewById(R.id.spinner_busca_cidade);
+            EditText edt = (EditText) findViewById(R.id.senha);
+            if(edt == null) Log.i("erro", "Edt é null");
+            return view;
+        }
+
+        public Spinner getSpinnerCidade(){
+            return spinner;
         }
     }
 
@@ -126,9 +135,18 @@ public class Busca extends AppCompatActivity {
             //return PlaceholderFragment.newInstance(position + 1);
             switch (position) {
                 case 0:
-                   return new BuscaTab(R.layout.busca_tab_eventos);
+                    BuscaTab v = new BuscaTab(R.layout.busca_tab_eventos);
+                    spinner = v.getSpinnerCidade();
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>
+                            (getBaseContext(), android.R.layout.simple_spinner_item, nomeDeCidades);
+                    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    if(spinner == null)
+                        Log.i("erro", "spinner é null");
+                    spinner.setAdapter(arrayAdapter);
+                    return v;
                 case 1:
-                    return new BuscaTab(R.layout.busca_tab_ingressos);
+                     v = new BuscaTab(R.layout.busca_tab_ingressos);
+                    return v;
                 case 2:
                     return new BuscaTab(R.layout.busca_tab_vendedores);
                 default:
@@ -138,9 +156,8 @@ public class Busca extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 3;
-        }
+            }
 
         @Override
         public CharSequence getPageTitle(int position) {
