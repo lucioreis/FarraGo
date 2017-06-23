@@ -53,4 +53,8 @@ public class ResultadoDaBusca extends AppCompatActivity{
                 }
             });
     }
+
+    public void voltar(View v){
+        finish();
+    }
 }

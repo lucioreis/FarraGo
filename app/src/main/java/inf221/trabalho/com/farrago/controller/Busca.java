@@ -32,7 +32,7 @@ public class Busca extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private List<String> nomeDeCidades;
-    private static  ArrayAdapter<String> arrayCidade, arrayTag, arrayTema;
+    private static  ArrayAdapter<String> arrayCidade, arrayTag, arrayTema, arrayFaixa;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -57,11 +57,19 @@ public class Busca extends AppCompatActivity {
         nomeDeCidades = new ArrayList<>();
         nomeDeCidades.add("Viçosa");
         nomeDeCidades.add("Acapulco");
-        arrayCidade= new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, nomeDeCidades);
+        arrayCidade = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, new String[]{"Cidade", "Viçosa", "Acapulco", "Pindamonhangaba"});
+        nomeDeCidades.add("bebida liberada");
+        arrayTag = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, new String[]{"Tag","OpenBar"});
+        arrayTema = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, new String[]{"Tema", "micareta", "festa a fantasia"});
+        arrayFaixa = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, new String[]{"Faixa Etária", "até 10", "10-14", "14-16", "16-18", "18 ou mais"});
     }
 
-    public void fazerPesquisa(View v){
-       // List<String> filtrosSelecionados = (new BuscaTab()).getItensSelecionados();
+    public void fazerPesquisaPorIngresso(View v){
+       //List<String> filtrosSelecionados = (new BuscaTab()).getItensSelecionados();
+        startActivity(new Intent(this, ResultadoDaBusca.class));
+    }
+
+    public void fazerPesquisaPorEvento(View v){
         startActivity(new Intent(this, ResultadoDaBusca.class));
     }
 
@@ -116,7 +124,8 @@ public class Busca extends AppCompatActivity {
                     BuscaTab v = BuscaTab.builder(R.layout.busca_tab_eventos)
                             .arrayCidade(arrayCidade)
                             .arrayTag(arrayTag)
-                            .arrayTema(arrayTema);
+                            .arrayTema(arrayTema)
+                            .arrayFaixa(arrayFaixa);
                     return v;
                 case 1:
                      v = BuscaTab.builder(R.layout.busca_tab_ingressos)

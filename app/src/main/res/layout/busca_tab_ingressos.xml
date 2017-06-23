@@ -48,7 +48,7 @@
         android:layout_width="144dp"
         android:layout_height="53dp"
         android:src="@drawable/button_buscar_2"
-        android:onClick="fazerPesquisa"
+        android:onClick="fazerPesquisaPorIngresso"
         android:scaleType="centerCrop"
         android:layout_gravity="center_horizontal"
         android:background="@color/colorWhite"/>

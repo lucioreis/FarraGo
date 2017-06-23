@@ -75,5 +75,9 @@ public class MeusIngressos extends AppCompatActivity {
         imageDialog.show();
     }
 
+    public void voltar(View v){
+        finish();
+    }
+
 
 }

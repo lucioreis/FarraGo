@@ -22,8 +22,8 @@ import inf221.trabalho.com.farrago.model.FachadaSingleton;
 
 public class BuscaTab extends Fragment {
     private int resource;
-    private Spinner spinnerNomeDoEvento, spinnerTag, spinnerTema, spinnerCidadesIngressoTab, spinnerCidadesEventoTab;
-    private ArrayAdapter<String> arrayAdapter, arrayCidade, arrayTag, arrayTema, arrayNome;
+    private Spinner spinnerNomeDoEvento, spinnerTag, spinnerTema, spinnerCidadesIngressoTab, spinnerCidadesEventoTab, spinnerFaixa;
+    private ArrayAdapter<String> arrayCidade, arrayTag, arrayTema, arrayNome, arrayFaixa;
 
     public BuscaTab(int res){
         resource = res;
@@ -48,19 +48,24 @@ public class BuscaTab extends Fragment {
         arrayNome = _array;
         return this;
     }
+    public BuscaTab arrayFaixa(ArrayAdapter<String> _array){
+        arrayFaixa = _array;
+        return this;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstamce){
         Log.i("erro", "chamou o oncreateView");
         return inflater.inflate(resource, container, false);
     }
     private void fillSpinner(Spinner spin, ArrayAdapter<String> _arrayAdapter){
-        if(_arrayAdapter != null && spin != null){ spin.setPrompt("Gender"); spin.setAdapter(_arrayAdapter);}
+        if(_arrayAdapter != null && spin != null){ spin.setAdapter(_arrayAdapter);}
     }
 
     private void spinnerAdd(Spinner spin, List<String> l){
         if(l == null) return;
         if(spin == null) l.add("");
         try {
+            if(spin.getSelectedItemPosition() == 0) return;
             l.add((String) spin.getSelectedItem());
         }catch (NullPointerException e){
             l.add("");
@@ -79,11 +84,13 @@ public class BuscaTab extends Fragment {
         spinnerTema = recoverSpinner(R.id.spinner_busca_tema);
         spinnerTag = recoverSpinner(R.id.spinner_busca_tag);
         spinnerNomeDoEvento = recoverSpinner(R.id.spinner_busca_evento);
+        spinnerFaixa = recoverSpinner(R.id.spinner_busca_faixa);
         fillSpinner(spinnerCidadesEventoTab, arrayCidade);
         fillSpinner(spinnerCidadesIngressoTab, arrayCidade);
         fillSpinner(spinnerTema, arrayTema);
         fillSpinner(spinnerTag, arrayTag);
         fillSpinner(spinnerNomeDoEvento, arrayNome);
+        fillSpinner(spinnerFaixa, arrayFaixa);
     }
     @Override
     public void onResume(){

@@ -11,7 +11,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/meus_ingressos_title"
+            android:src="@drawable/resultados_da_busca"
             android:scaleType="centerCrop"
             />
 
@@ -21,7 +21,8 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:background="@color/farrago_blue"
-            android:src="@drawable/arrow_back" />
+            android:src="@drawable/arrow_back"
+            android:onClick="voltar"/>
     </FrameLayout>
 
     <ListView
@@ -29,10 +30,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </ListView>
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/button_comprar"
-        android:onClick="aindaemteste"/>
 
 </LinearLayout>

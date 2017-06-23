@@ -82,7 +82,7 @@
         android:layout_height="53dp"
         android:layout_gravity="center_horizontal"
         android:background="@color/colorWhite"
-        android:onClick="fazerPesquisa"
+        android:onClick="fazerPesquisaPorEvento"
         android:scaleType="centerCrop"
         android:src="@drawable/button_buscar_2" />
 

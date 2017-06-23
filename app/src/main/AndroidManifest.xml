@@ -23,8 +23,8 @@
             android:name=".controller.MeusIngressos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controller.Pagamento" />
-        <activity android:name=".controller.FragmentTab1" />
-        <activity android:name=".controller.ResultadoDaBusca" />
+        <activity android:name=".controller.ResultadoDaBusca"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".controller.ComprarIngresso"
             android:theme="@style/AppTheme.NoActionBar" />

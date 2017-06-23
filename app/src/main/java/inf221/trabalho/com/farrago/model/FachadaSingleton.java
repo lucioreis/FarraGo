@@ -18,7 +18,7 @@ public final class FachadaSingleton {
     private FachadaSingleton(){}
 
     private enum Filtro{ CIDADE_EVENTO, CIDADE_INGRESSO, TEMA, TAG, NOME }
-
+    private boolean cidade, preço, nomeDoEvento, reputacao, data, tema, faixa, tag;
     private List<String> filtros;
     private void daoCidades(){
         //TODO-Implementar com o banco de dados
