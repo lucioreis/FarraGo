@@ -8,15 +8,18 @@ import java.util.List;
  * Created by lucio on 6/21/2017.
  */
 
-public final class FachadaSingletone {
-    private static final FachadaSingletone ourInst = new FachadaSingletone();
+public final class FachadaSingleton {
+    private static final FachadaSingleton ourInst = new FachadaSingleton();
     private List<String> nomeDeCidade, tags;
     private  List<Date> dataDasFEstas;
 
     private Comprador comprador;
 
-    private FachadaSingletone(){}
+    private FachadaSingleton(){}
 
+    private enum Filtro{ CIDADE_EVENTO, CIDADE_INGRESSO, TEMA, TAG, NOME }
+    private boolean cidade, preço, nomeDoEvento, reputacao, data, tema, faixa, tag;
+    private List<String> filtros;
     private void daoCidades(){
         //TODO-Implementar com o banco de dados
         if(nomeDeCidade == null){
@@ -37,6 +40,10 @@ public final class FachadaSingletone {
         //TODO- Busca dados do usuario
     }
 
+    public void setFiltros(List<String> l){
+        filtros = l;
+    }
+
     public List getNomeDeCidades(){
         return nomeDeCidade;
     }
@@ -51,6 +58,6 @@ public final class FachadaSingletone {
         throw new UnsupportedOperationException();
     }
 
-    public static FachadaSingletone getOurInst(){ return ourInst;}
+    public static FachadaSingleton getOurInst(){ return ourInst;}
 
 }

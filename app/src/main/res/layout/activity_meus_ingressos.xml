@@ -22,7 +22,8 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:background="@color/farrago_blue"
-            android:src="@drawable/arrow_back" />
+            android:src="@drawable/arrow_back"
+            android:onClick="voltar"/>
     </FrameLayout>
 
     <ListView

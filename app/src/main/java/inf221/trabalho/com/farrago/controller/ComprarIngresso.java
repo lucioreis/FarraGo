@@ -45,4 +45,8 @@ public class ComprarIngresso extends AppCompatActivity {
         startActivity(it);
         finish();
     }
+
+    public void cancelar(View v){
+        finish();
+    }
 }

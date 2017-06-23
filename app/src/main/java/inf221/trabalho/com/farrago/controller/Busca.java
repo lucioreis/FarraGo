@@ -9,18 +9,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import inf221.trabalho.com.farrago.R;
+import inf221.trabalho.com.farrago.model.FachadaSingleton;
 
 public class Busca extends AppCompatActivity {
 
@@ -33,9 +31,8 @@ public class Busca extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private Spinner spinner;
     private List<String> nomeDeCidades;
-    private static  ArrayAdapter<String> arrayAdapter;
+    private static  ArrayAdapter<String> arrayCidade, arrayTag, arrayTema, arrayFaixa;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -57,13 +54,22 @@ public class Busca extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-//        arrayAdapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, nomeDeCidades);
-
-
-
+        nomeDeCidades = new ArrayList<>();
+        nomeDeCidades.add("Viçosa");
+        nomeDeCidades.add("Acapulco");
+        arrayCidade = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, new String[]{"Cidade", "Viçosa", "Acapulco", "Pindamonhangaba"});
+        nomeDeCidades.add("bebida liberada");
+        arrayTag = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, new String[]{"Tag","OpenBar"});
+        arrayTema = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, new String[]{"Tema", "micareta", "festa a fantasia"});
+        arrayFaixa = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, new String[]{"Faixa Etária", "até 10", "10-14", "14-16", "16-18", "18 ou mais"});
     }
 
-    public void fazerPesquisa(View v){
+    public void fazerPesquisaPorIngresso(View v){
+       //List<String> filtrosSelecionados = (new BuscaTab()).getItensSelecionados();
+        startActivity(new Intent(this, ResultadoDaBusca.class));
+    }
+
+    public void fazerPesquisaPorEvento(View v){
         startActivity(new Intent(this, ResultadoDaBusca.class));
     }
 
@@ -98,33 +104,13 @@ public class Busca extends AppCompatActivity {
         }
     }
 
-    public class BuscaTab extends Fragment {
-        private int resource;
-        private Spinner spinner;
-        public BuscaTab(int res){
-            resource = res;
-        }
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstamce){
-            View view =  inflater.inflate(resource, container, false);
-            spinner = (Spinner) view.findViewById(R.id.spinner_busca_cidade);
-            EditText edt = (EditText) findViewById(R.id.senha);
-            if(edt == null) Log.i("erro", "Edt é null");
-            return view;
-        }
-
-        public Spinner getSpinnerCidade(){
-            return spinner;
-        }
-    }
-
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        private SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -135,17 +121,16 @@ public class Busca extends AppCompatActivity {
             //return PlaceholderFragment.newInstance(position + 1);
             switch (position) {
                 case 0:
-                    BuscaTab v = new BuscaTab(R.layout.busca_tab_eventos);
-                    spinner = v.getSpinnerCidade();
-                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>
-                            (getBaseContext(), android.R.layout.simple_spinner_item, nomeDeCidades);
-                    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    if(spinner == null)
-                        Log.i("erro", "spinner é null");
-                    spinner.setAdapter(arrayAdapter);
+                    BuscaTab v = BuscaTab.builder(R.layout.busca_tab_eventos)
+                            .arrayCidade(arrayCidade)
+                            .arrayTag(arrayTag)
+                            .arrayTema(arrayTema)
+                            .arrayFaixa(arrayFaixa);
                     return v;
                 case 1:
-                     v = new BuscaTab(R.layout.busca_tab_ingressos);
+                     v = BuscaTab.builder(R.layout.busca_tab_ingressos)
+                             .arrayCidade(arrayCidade);
+
                     return v;
                 case 2:
                     return new BuscaTab(R.layout.busca_tab_vendedores);

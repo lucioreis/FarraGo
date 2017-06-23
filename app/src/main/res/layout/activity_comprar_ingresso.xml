@@ -26,104 +26,64 @@
         />
 
     <TextView
+        style="@style/FarraGoSubTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Festa:"
-        android:paddingLeft="50dp"
-        tools:layout_editor_absoluteY="116dp"
-        tools:layout_editor_absoluteX="30dp"
         />
 
     <TextView
         android:id="@+id/nome_da_festa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="50dp"
-        android:paddingEnd="50dp"
-        android:layout_margin="10dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
+        style="@style/FarraGoTexto"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/FarraGoSubTitulo"
         android:text="Local:"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/FarraGoTexto"
         android:id="@+id/local_da_festa"/>
 
     <TextView
         android:id="@+id/data_da_festa"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_margin="10dp"
-        android:layout_marginLeft="50dp"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp" />
+        style="@style/FarraGoTexto" />
 
     <TextView
         android:id="@+id/hora_da_festa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        style="@style/FarraGoTexto"
         />
 
     <TextView
         android:id="@+id/valor_do_ingresso"
-        android:paddingLeft="50dp"
+        style="@style/FarraGoTexto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/faixa_etaria_da_festa"
-        android:paddingLeft="50dp"
+        style="@style/FarraGoTexto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/FarraGoTexto"
         android:id="@+id/ingressos_disponiveis"/>
 
-    <!--<TextView
-        android:layout_width="248dp"
-        android:layout_height="wrap_content"
-        android:text="Forma de Pagamento"
-        android:paddingLeft="50dp"
-        android:layout_margin="10dp"
-        android:layout_weight="0.07" />
-
-    <RadioGroup
-        android:id="@+id/opcoes_de_pagamentos"
-        android:paddingLeft="50dp"
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
-
-        <RadioButton
-            android:id="@+id/cartao"
-            android:layout_width="222dp"
-            android:layout_height="37dp"
-            android:text="Cartão de Crédito" />
-
-        <RadioButton
-            android:id="@+id/boleto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Boleto Bancario" />
-    </RadioGroup>
-    <ImageButton
-        android:layout_width="162dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/button_comprar"
-        android:onClick="efetuarCompra"
         android:background="@color/colorWhite"
-        android:layout_gravity="center"
-        android:layout_weight="0.08" />-->
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:src="@drawable/button_comprar"
         android:onClick="efetuarCompra"/>
 
