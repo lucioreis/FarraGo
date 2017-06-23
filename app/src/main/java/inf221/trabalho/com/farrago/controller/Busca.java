@@ -1,7 +1,6 @@
 package inf221.trabalho.com.farrago.controller;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -14,12 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import inf221.trabalho.com.farrago.R;
+import inf221.trabalho.com.farrago.model.FachadaSingleton;
 
 public class Busca extends AppCompatActivity {
 
@@ -62,6 +61,7 @@ public class Busca extends AppCompatActivity {
     }
 
     public void fazerPesquisa(View v){
+       // List<String> filtrosSelecionados = (new BuscaTab()).getItensSelecionados();
         startActivity(new Intent(this, ResultadoDaBusca.class));
     }
 

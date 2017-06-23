@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -15,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import inf221.trabalho.com.farrago.R;
+import inf221.trabalho.com.farrago.model.FachadaSingleton;
 
 /**
  * Created by lucio on 6/22/2017.
@@ -28,6 +28,7 @@ public class BuscaTab extends Fragment {
     public BuscaTab(int res){
         resource = res;
     }
+    public BuscaTab(){}
     public static BuscaTab builder(int res){
         return new BuscaTab(res);
     }
@@ -53,10 +54,21 @@ public class BuscaTab extends Fragment {
         return inflater.inflate(resource, container, false);
     }
     private void fillSpinner(Spinner spin, ArrayAdapter<String> _arrayAdapter){
-        if(_arrayAdapter != null) spin.setAdapter(_arrayAdapter);
+        if(_arrayAdapter != null && spin != null){ spin.setPrompt("Gender"); spin.setAdapter(_arrayAdapter);}
     }
 
-    private Spinner recoverSpinner(int r){
+    private void spinnerAdd(Spinner spin, List<String> l){
+        if(l == null) return;
+        if(spin == null) l.add("");
+        try {
+            l.add((String) spin.getSelectedItem());
+        }catch (NullPointerException e){
+            l.add("");
+        }
+    }
+
+    private Spinner recoverSpinner(Integer r){
+        if(r == null) return null;
         return (Spinner) getActivity().findViewById(r);
     }
     @Override
@@ -73,14 +85,17 @@ public class BuscaTab extends Fragment {
         fillSpinner(spinnerTag, arrayTag);
         fillSpinner(spinnerNomeDoEvento, arrayNome);
     }
-
-    public List getItensSelecionados(){
+    @Override
+    public void onResume(){
+        super.onResume();
         List<String> itemSelecionados = new ArrayList<>();
-        itemSelecionados.add((String) spinnerCidadesEventoTab.getSelectedItem());
-        itemSelecionados.add((String) spinnerCidadesIngressoTab.getSelectedItem());
-        itemSelecionados.add((String) spinnerTema.getSelectedItem());
-        itemSelecionados.add((String) spinnerTag.getSelectedItem());
-        itemSelecionados.add((String) spinnerNomeDoEvento.getSelectedItem());
-        return  itemSelecionados;
+        spinnerAdd(spinnerCidadesEventoTab, itemSelecionados);
+        spinnerAdd(spinnerCidadesEventoTab, itemSelecionados);
+        spinnerAdd(spinnerCidadesIngressoTab, itemSelecionados);
+        spinnerAdd(spinnerTema, itemSelecionados);
+        spinnerAdd(spinnerTag, itemSelecionados);
+        spinnerAdd(spinnerNomeDoEvento, itemSelecionados);
+        FachadaSingleton fachadaSingleton = FachadaSingleton.getOurInst();
+        fachadaSingleton.setFiltros(itemSelecionados);
     }
 }
