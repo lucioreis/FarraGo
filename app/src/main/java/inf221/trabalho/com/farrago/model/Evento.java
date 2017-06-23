@@ -1,112 +1,139 @@
 package inf221.trabalho.com.farrago.model;
 
+import com.j256.ormlite.field.DatabaseField;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Evento implements Serializable{
+public class Evento implements Serializable {
 
-	private String nomeDoEvento;
-	private String local;
-	private Date data;
-	private Time horario;
-	private int faixaEtaria;
-	private Ingresso ingresso;
-	private int numeroDeIngressos;
+	@DatabaseField(generatedId = true)
+	public int idEvento;
 
-	public String getNomeDoEvento() {
-		return this.nomeDoEvento;
-	}
+	public String nomeDoEvento;
 
-	/**
-	 * 
-	 * @param nomeDoEvento
-	 */
-	public void setNomeDoEvento(String nomeDoEvento) {
-		this.nomeDoEvento = nomeDoEvento;
-	}
+	public String cidade;
 
-	public String getLocal() {
-		return this.local;
-	}
+	public Date data;
 
-	/**
-	 * 
-	 * @param local
-	 */
-	public void setLocal(String local) {
-		this.local = local;
-	}
+	public Time horario;
 
-	public Date getData() {
-		return this.data;
-	}
+	public int faixaEtaria;
 
-	/**
-	 * 
-	 * @param data
-	 */
-	public void setData(Date data) {
-		this.data = data;
-	}
+	@DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+	public Ingresso ingresso;
 
-	public Time getHorario() {
-		return this.horario;
-	}
+	public int numeroDeIngressos;
 
-	/**
-	 * 
-	 * @param horario
-	 */
-	public void setHorario(Time horario) {
-		this.horario = horario;
-	}
+	public String tag;
 
-	public int getFaixaEtaria() {
-		return this.faixaEtaria;
-	}
+	public Evento(){}
 
-	/**
-	 * 
-	 * @param faixaEtaria
-	 */
-	public void setFaixaEtaria(int faixaEtaria) {
-		this.faixaEtaria = faixaEtaria;
-	}
-
-	public Ingresso getIngresso() {
-		return this.ingresso;
-	}
-
-	/**
-	 * 
-	 * @param ingresso
-	 */
-	public void setIngresso(Ingresso ingresso) {
-		this.ingresso = ingresso;
-	}
-
-	public int getNumeroDeIngressos() {
-		return this.numeroDeIngressos;
-	}
-
-	/**
-	 * 
-	 * @param numeroDeIngressos
-	 */
-	public void setNumeroDeIngressos(int numeroDeIngressos) {
-		this.numeroDeIngressos = numeroDeIngressos;
-	}
-
-	/**
-	 * 
-	 * @param numeroDeIngressos
-	 * @param preco
-	 * @param tipoDeIngresso
-	 */
-	public void cadastraIngressos(int numeroDeIngressos, float preco, int lote, int tipoDeIngresso) {
-		ingresso = new Ingresso(numeroDeIngressos, preco, lote, tipoDeIngresso);
-		this.numeroDeIngressos = numeroDeIngressos;
+	public Evento(String nEv, String cid, Date dt, Time h, int fxE, Ingresso ing, int nIng){
+		this.nomeDoEvento = nEv;
+		this.cidade = cid;
+		this.data = dt;
+		this.horario = h;
+		this.faixaEtaria = fxE;
+		this.ingresso = ing;
+		this.numeroDeIngressos = nIng;
 	}
 
 }
+
+//	public String getNomeDoEvento() {
+//		return this.nomeDoEvento;
+//	}
+//
+//	/**
+//	 *
+//	 * @param nomeDoEvento
+//	 */
+//	public void setNomeDoEvento(String nomeDoEvento) {
+//		this.nomeDoEvento = nomeDoEvento;
+//	}
+//
+//	public String getLocal() {
+//		return this.local;
+//	}
+//
+//	/**
+//	 *
+//	 * @param local
+//	 */
+//	public void setLocal(String local) {
+//		this.local = local;
+//	}
+//
+//	public Date getData() {
+//		return this.data;
+//	}
+//
+//	/**
+//	 *
+//	 * @param data
+//	 */
+//	public void setData(Date data) {
+//		this.data = data;
+//	}
+//
+//	public Time getHorario() {
+//		return this.horario;
+//	}
+//
+//	/**
+//	 *
+//	 * @param horario
+//	 */
+//	public void setHorario(Time horario) {
+//		this.horario = horario;
+//	}
+//
+//	public int getFaixaEtaria() {
+//		return this.faixaEtaria;
+//	}
+//
+//	/**
+//	 *
+//	 * @param faixaEtaria
+//	 */
+//	public void setFaixaEtaria(int faixaEtaria) {
+//		this.faixaEtaria = faixaEtaria;
+//	}
+//
+//	public Ingresso getIngresso() {
+//		return this.ingresso;
+//	}
+//
+//	/**
+//	 *
+//	 * @param ingresso
+//	 */
+//	public void setIngresso(Ingresso ingresso) {
+//		this.ingresso = ingresso;
+//	}
+//
+//	public int getNumeroDeIngressos() {
+//		return this.numeroDeIngressos;
+//	}
+//
+//	/**
+//	 *
+//	 * @param numeroDeIngressos
+//	 */
+//	public void setNumeroDeIngressos(int numeroDeIngressos) {
+//		this.numeroDeIngressos = numeroDeIngressos;
+//	}
+//
+//	/**
+//	 *
+//	 * @param numeroDeIngressos
+//	 * @param preco
+//	 * @param tipoDeIngresso
+//	 */
+//	public void cadastraIngressos(int numeroDeIngressos, float preco, int lote, int tipoDeIngresso) {
+//		ingresso = new Ingresso(numeroDeIngressos, preco, lote, tipoDeIngresso);
+//		this.numeroDeIngressos = numeroDeIngressos;
+//	}
+//
+//}
