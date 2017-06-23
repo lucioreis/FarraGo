@@ -16,6 +16,7 @@ import java.util.List;
 import inf221.trabalho.com.farrago.R;
 import inf221.trabalho.com.farrago.model.Evento;
 import inf221.trabalho.com.farrago.model.Ingresso;
+import inf221.trabalho.com.farrago.util.PersonalizadoArrayAdapter;
 
 /**
  * Created by lucio on 6/20/2017.
@@ -29,7 +30,7 @@ public class ResultadoDaBusca extends AppCompatActivity{
             final ListView listView = (ListView) findViewById(R.id.lista_de_ingressos);
             List<Ingresso> ingressos = new ArrayList<>();
 
-
+            List<Evento> eventos = new ArrayList<>();
 
             Evento evento = new Evento();
             evento.setNomeDoEvento("Festa de aniversario de Coragen o Cão Covarde");
@@ -41,15 +42,17 @@ public class ResultadoDaBusca extends AppCompatActivity{
             evento.setNumeroDeIngressos(123);
             evento.getIngresso().setEvento(evento);
             ingressos.add(evento.getIngresso());
+            eventos.add(evento);
+            eventos.add(evento);
 
-            ArrayAdapter<Ingresso> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ingressos);
+            PersonalizadoArrayAdapter arrayAdapter = new PersonalizadoArrayAdapter(eventos, this);
 
             listView.setAdapter(arrayAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     startActivity( ( new Intent(getBaseContext(), ComprarIngresso.class ))
-                            .putExtra("evento", ((Ingresso) listView.getItemAtPosition(position)).getEvento()) );
+                            .putExtra("evento", (Evento) listView.getItemAtPosition(position)));
                 }
             });
     }

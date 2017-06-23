@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Time;
@@ -24,6 +26,7 @@ import java.util.List;
 import inf221.trabalho.com.farrago.R;
 import inf221.trabalho.com.farrago.model.Evento;
 import inf221.trabalho.com.farrago.model.Ingresso;
+import inf221.trabalho.com.farrago.util.PersonalizadoArrayAdapter;
 
 public class MeusIngressos extends AppCompatActivity {
     @Override
@@ -43,14 +46,13 @@ public class MeusIngressos extends AppCompatActivity {
         evento.getIngresso().setEvento(evento);
         ingressos.add(evento.getIngresso());
 
-        ArrayAdapter<Ingresso> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ingressos);
+        PersonalizadoArrayAdapter arrayAdapter = new PersonalizadoArrayAdapter(ingressos, this);
 
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 createPopupImage(listView, position);
-                Toast.makeText(getBaseContext(), "Criar um popup de qr code aqui", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -60,7 +62,11 @@ public class MeusIngressos extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
         View layout = inflater.inflate(R.layout.popup_imagem,null);
-        ImageView image = (ImageView) findViewById(R.id.qrCode);
+        ImageView image = ((layout.findViewById(R.id.qrCode) != null)) ? (ImageView) layout.findViewById(R.id.qrCode) : null;
+        if(image != null){
+            image.setImageResource(R.drawable.qr3);
+            image.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        }
         imageDialog.setView(layout);
         imageDialog.setPositiveButton("Return", new DialogInterface.OnClickListener() {
 
@@ -74,6 +80,7 @@ public class MeusIngressos extends AppCompatActivity {
         imageDialog.create();
         imageDialog.show();
     }
+
 
     public void voltar(View v){
         finish();
