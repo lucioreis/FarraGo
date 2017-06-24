@@ -42,7 +42,7 @@ public class PersonalizadoArrayAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = act.getLayoutInflater().inflate(R.layout.list_view_text_style, parent, false);
+        /*View view = act.getLayoutInflater().inflate(R.layout.list_view_text_style, parent, false);
         if(objetos.get(position) instanceof Ingresso){
             Ingresso ingresso = (Ingresso) objetos.get(position);
             TextView textView = (TextView) view.findViewById(R.id.texto_da_list_view);
@@ -57,7 +57,7 @@ public class PersonalizadoArrayAdapter extends BaseAdapter {
             imageView.setImageResource(R.drawable.festa_icone);
             textView.setText(evento.getNomeDoEvento());
             return view;
-        }
-
+        } */
+        return convertView;
     }
 }

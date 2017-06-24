@@ -1,17 +1,49 @@
 package inf221.trabalho.com.farrago.model;
 
+import com.j256.ormlite.dao.Dao;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
-/**
- * Created by lucio on 6/21/2017.
- */
+import java.sql.SQLException;
+import java.util.*;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+
+import inf221.trabalho.com.farrago.R;
+import inf221.trabalho.com.farrago.model.DatabaseHelper;
+import inf221.trabalho.com.farrago.model.Ingresso;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
 
 public final class FachadaSingleton {
     private static final FachadaSingleton ourInst = new FachadaSingleton();
+
+    private DatabaseHelper databaseHelper = null;
+    private Dao<Ingresso, Integer> IngressoDao;
+    private List<Ingresso> ingressos = new ArrayList<>();
+
+    private Dao<Evento, Integer> EventoDao;
+    private List<Evento> eventos = new ArrayList<>();
+
+    private Dao<CompradorIngresso, Integer> CompradorIngressoDao;
+    private List<CompradorIngresso> compradorIngressos = new ArrayList<>();
+
+    private Dao<Comprador, Integer> CompradorDao;
+    private List<Comprador> compradores = new ArrayList<>();
+
     private List<String> nomeDeCidade, tags;
-    private  List<Date> dataDasFEstas;
+    private  List<Date> dataDasFestas = new ArrayList<>();
 
     private Comprador comprador;
 
@@ -21,23 +53,87 @@ public final class FachadaSingleton {
     private boolean cidade, preço, nomeDoEvento, reputacao, data, tema, faixa, tag;
     private List<String> filtros;
     private void daoCidades(){
-        //TODO-Implementar com o banco de dados
         if(nomeDeCidade == null){
             nomeDeCidade = new ArrayList<>();
         }
-        nomeDeCidade.add("Acapulco");
-        nomeDeCidade.add("Vicosa");
+        if(EventoDao == null){
+            EventoDao = getHelper().getEventoDao();
+            eventos = EventoDao.queryForAll();
+            Date d = new Date();
+            for(int i = 0; i < eventos.size(); i++)
+                if(eventos.get(i).data.after(d) || eventos.get(i).data.equals(d))
+                    eventos.remove(i);
+        }
+
+        Set<String> cidadesDiferentes = new HashSet<>();
+        for(int i = 0; i < eventos.size(); i++){
+            if(!cidadesDiferentes.contains(eventos.get(i).cidade)) {
+                cidadesDiferentes.add(eventos.get(i).cidade);
+                nomeDeCidade.add(eventos.get(i).cidade);
+            }
+        }
+
+    }
+
+    private DatabaseHelper getHelper() {
+        if (databaseHelper == null) {
+            databaseHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
+        }
+        return databaseHelper;
     }
 
     private void daoTags(){
-        //TODO - Deve buscar todas as tags disponiveis no banco de dados, cho que nao precisa ficar no bd mas ta aqui so por garantia
+        if(tags == null){
+            tags = new ArrayList<>();
+        }
+        if(EventoDao == null){
+            EventoDao = getHelper().getEventoDao();
+            eventos = EventoDao.queryForAll();
+            Date d = new Date();
+            for(int i = 0; i < eventos.size(); i++)
+                if(eventos.get(i).data.after(d) || eventos.get(i).data.equals(d))
+                    eventos.remove(i);
+        }
+
+        Set<String> tagsDiferentes;
+        for(int i = 0; i < eventos.size(); i++){
+            if(!tagsDiferentes.contains(eventos.get(i).tag)) {
+                tagsDiferentes.add(eventos.get(i).tag);
+                tags.add(eventos.get(i).tag);
+            }
+        }
     }
 
     private void daoTema(){
-        //TODO - Deve buscar os temas no banco de dados
+        daoTags();
     }
+
     private void daoUser(){
-        //TODO- Busca dados do usuario
+        int idUser = 123456; // Nao existe login no nosso sistema. Entao tem que supor um id de usuario
+        if(CompradorDao == null){
+            CompradorDao = getHelper().getCompradorDao();
+            compradores = CompradorDao.queryForAll();
+        }
+        if(CompradorIngressoDao == null){
+            CompradorIngressoDao = getHelper().getCompradorIngressoDao();
+            compradorIngressos = CompradorIngressoDao.queryForAll();
+        }
+        List<Ingresso> meusIngressos = new ArrayList<>();
+        int cpf;
+
+        for(int i = 0; i < compradores.size(); i++)
+            if(compradores.get(i).getIdComprador() == idUser){
+                cpf = compradores.get(i).getCpf();
+                break;
+            }
+
+        for(int i = 0; i < compradorIngressos.size(); i++){
+            if(compradorIngressos.get(i).comprador.idComprador == idUser)
+                meusIngressos.add(compradorIngressos.get(i).ingresso);
+        }
+
+        comprador.setCpf(cpf);
+        comprador.setMeusIngressos(meusIngressos);
     }
 
     public void setFiltros(List<String> l){
@@ -49,13 +145,65 @@ public final class FachadaSingleton {
     }
 
     public List getEventos(String nomeDeAlgumaCidade, Date data, String[] tags, String tema){
-        //TODO - Implementar: Recebe os filtros e retorna uma Lista com os eventos
-        throw new UnsupportedOperationException();
+        List<Evento> eventosSemFiltros = new ArrayList<>();
+        Date d = new Date();
+        if(EventoDao == null){
+            EventoDao = getHelper().getEventoDao();
+            eventos = EventoDao.queryForAll();
+            for(int i = 0; i < eventos.size(); i++)
+                if(eventosSemFiltros.get(i).data.after(d) || eventosSemFiltros.get(i).data.equals(d))
+                    eventos.remove(i);
+        }
+        eventosSemFiltros = eventos;
+        if(nomeDeAlgumaCidade != null && !nomeDeAlgumaCidade.isEmpty()){ // selecionar por nome
+            for(int i = 0; i < eventosSemFiltros.size(); i++){
+                if(!eventosSemFiltros.get(i).cidade.equals(nomeDeAlgumaCidade))
+                    eventosSemFiltros.remove(i);
+            }
+        }
+        if(data != null){ // selecionar por data
+            for(int i = 0; i < eventosSemFiltros.size(); i++){
+                if(eventosSemFiltros.get(i).data.after(data) || eventosSemFiltros.get(i).data.equals(data))
+                    eventosSemFiltros.remove(i);
+            }
+        }
+        if(tags != null && tags.length() > 0) { // selecionar por tag
+            for (int i = 0; i < eventosSemFiltros.size(); i++) {
+                boolean deu = false;
+                for (int j = 0; j < tags.length(); j++) {
+                    if (eventosSemFiltros.get(i).tag.equals(tags[i]))
+                        deu = true;
+                }
+                if (!deu) eventosSemFiltros.remove(i);
+            }
+        }
+        // Nao existe filtro de tema. Existe um problema na documentacao relacionado a esse campo
+        return eventosSemFiltros; // todos filtros aplicados
     }
-    public List getEventosPorCida(String nomeDeAlgumaCidade, String nomeDoEvento, boolean reputacaoDosVendedores){
-        //TODO - Implementar: Recebe os filtros e retorna uma Lista com os eventos
-        //se reputacao e true tem que considerar uma certa reputacaa, tem que checar nos documentos
-        throw new UnsupportedOperationException();
+    public List<Ingresso> getIngressosPorCida(String nomeDeAlgumaCidade, String nomeDoEvento, int reputacaoDosVendedores){
+        List<Ingresso> ingressosSemFiltros;
+        if(IngressoDao == null){
+            IngressoDao = getHelper().getIngressoDao();
+            ingressos = IngressoDao.queryForAll();
+            for(int i = 0; i < ingressos.size(); i++)
+                if(!ingressos.get(i).disponivel) ingressos.remove(i);
+        }
+        ingressosSemFiltros = ingressos;
+
+        if(reputacaoDosVendedores != null){
+            for(int i = 0; i < ingressosSemFiltros.size(); i++)
+                if(ingressosSemFiltros.get(i).vendedor.getAvaliacao() < reputacaoDosVendedores)
+                    ingressosSemFiltros.remove(i);
+        }
+
+        if(nomeDeAlgumaCidade != null && !nomeDeAlgumaCidade.isEmpty()){
+            for(int i = 0; i < ingressosSemFiltros.size(); i++)
+                if(!ingressosSemFiltros.get(i).cidade.equals(nomeDeAlgumaCidade))
+                    ingressosSemFiltros.remove(i);
+        }
+
+        return ingressosSemFiltros; // filtros aplicados
+
     }
 
     public static FachadaSingleton getOurInst(){ return ourInst;}

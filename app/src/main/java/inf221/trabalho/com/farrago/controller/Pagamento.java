@@ -142,11 +142,11 @@ public class Pagamento extends FragmentActivity {
     public void efetuarCompraCartao(View v){
         Comprador comprador = Comprador.getInstance();
         Evento evento = (Evento) it.getSerializableExtra("evento");
-        if(evento != null)
+        /*if(evento != null)
             comprador.addIngresso(evento.getIngresso());
         Toast.makeText(this, "Compra realizada com sucesso", Toast.LENGTH_LONG).show();
         Intent it2 = new Intent(this, CompradorTelaPrincipal.class);
-        it2.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        it2.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); */
         finish();
     }
 

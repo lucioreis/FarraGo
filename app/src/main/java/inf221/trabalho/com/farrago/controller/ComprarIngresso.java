@@ -19,7 +19,7 @@ public class ComprarIngresso extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comprar_ingresso);
         Intent it = getIntent();
-        evento = (Evento) it.getSerializableExtra("evento");
+        /*evento = (Evento) it.getSerializableExtra("evento");
         if(evento == null){
             evento = new Evento();
             evento.setData(new Date(11,11,11));
@@ -36,6 +36,7 @@ public class ComprarIngresso extends AppCompatActivity {
         ((TextView) findViewById(R.id.valor_do_ingresso)).setText("Preço: " + evento.getIngresso().getPreco().toString());
         ((TextView) findViewById(R.id.faixa_etaria_da_festa)).setText("Faixa Etária: " + ((Integer) evento.getFaixaEtaria()).toString());
         ((TextView) findViewById(R.id.ingressos_disponiveis)).setText("Ingressos disponiveis: " + evento.getNumeroDeIngressos());
+   */
     }
 
     public void efetuarCompra(View v){

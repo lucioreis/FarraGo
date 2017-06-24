@@ -35,7 +35,7 @@ public class MeusIngressos extends AppCompatActivity {
         setContentView(R.layout.activity_meus_ingressos);
         final ListView listView = (ListView) findViewById(R.id.lista_de_ingressos);
         List<Ingresso> ingressos = new ArrayList<>();
-        Evento evento = new Evento();
+        /*Evento evento = new Evento();
         evento.setNomeDoEvento("Festa de aniversario de Coragen o Cão Covarde");
         evento.setData(new java.sql.Date(11,11,11));
         evento.setFaixaEtaria(11);
@@ -55,6 +55,7 @@ public class MeusIngressos extends AppCompatActivity {
                 createPopupImage(listView, position);
             }
         });
+        */
     }
 
     public void createPopupImage(ListView listView, int position) {

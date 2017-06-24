@@ -31,7 +31,7 @@ public class ResultadoDaBusca extends AppCompatActivity{
             List<Ingresso> ingressos = new ArrayList<>();
 
             List<Evento> eventos = new ArrayList<>();
-
+            /*
             Evento evento = new Evento();
             evento.setNomeDoEvento("Festa de aniversario de Coragen o Cão Covarde");
             evento.setData(new java.sql.Date(11,11,11));
@@ -55,6 +55,7 @@ public class ResultadoDaBusca extends AppCompatActivity{
                             .putExtra("evento", (Evento) listView.getItemAtPosition(position)));
                 }
             });
+            */
     }
 
     public void voltar(View v){

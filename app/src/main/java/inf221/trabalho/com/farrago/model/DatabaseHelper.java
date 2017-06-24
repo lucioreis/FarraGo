@@ -16,11 +16,14 @@ import inf221.trabalho.com.farrago.R;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME = "farrago.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private Dao<Ingresso, Integer> ingressoDao;
     private Dao<Evento, Integer> eventoDao;
     private Dao<CompradorIngresso, Integer> compradorIngressoDao;
+    private Dao<Comprador, Integer> compradorDao;
+    private Dao<Vendedor, Integer> vendedorDao;
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
     }
@@ -33,6 +36,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Ingresso.class);
             TableUtils.createTable(connectionSource, Evento.class);
             TableUtils.createTable(connectionSource, CompradorIngresso.class);
+            TableUtils.createTable(connectionSource, Comprador.class);
+            TableUtils.createTable(connectionSource, Vendedor.class);
 
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Erro ao criar tabelas", e);
@@ -47,9 +52,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             //automatically. Developer needs to handle the upgrade logic here, i.e. create a new table or a new column to an existing table, take the backups of the
             // existing database etc.
 
-            TableUtils.dropTable(connectionSource, Ingresso.class, true);
-            TableUtils.dropTable(connectionSource, Evento.class, true);
-            TableUtils.dropTable(connectionSource, CompradorIngresso.class, true);
+            TableUtils.createTableIfNotExists(connectionSource, Comprador.class);
+            TableUtils.createTableIfNotExists(connectionSource, Vendedor.class);
             onCreate(sqliteDatabase, connectionSource);
 
         } catch (SQLException e) {
@@ -77,6 +81,20 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             compradorIngressoDao = getDao(CompradorIngresso.class);
         }
         return compradorIngressoDao;
+    }
+
+    public Dao<Comprador, Integer> getCompradorDao() throws SQLException {
+        if (compradorDao == null) {
+            compradorDao = getDao(Comprador.class);
+        }
+        return compradorDao;
+    }
+
+    public Dao<Vendedor, Integer> getVendedorDao() throws SQLException {
+        if (vendedorDao == null) {
+            vendedorDao = getDao(Vendedor.class);
+        }
+        return vendedorDao;
     }
 
 }

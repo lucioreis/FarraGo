@@ -25,7 +25,11 @@ public class IngressoAddActivity extends Activity implements OnClickListener {
     private DatabaseHelper databaseHelper = null;
 
     private EditText busca_et;
-    private Button buscar_btn;
+    private ImageButton buscar_btn;
+
+    private Dao<Ingresso, Integer> IngressoDao;
+
+    private List<Ingresso> ingressos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +64,15 @@ public class IngressoAddActivity extends Activity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
+        showMessageDialog("TA AQUI VIADO");
         if (busca_et.getText().toString().trim().length() > 0) {
 
-            private Dao<Ingresso, Integer> IngressoDao;
-
-            private List<Ingresso> ingressos;
-            IngressoDao = getHelper().getIngressoDao();
-            ingressos = IngressoDao.queryForAll();
+            try {
+                IngressoDao = getHelper().getIngressoDao();
+                ingressos = IngressoDao.queryForAll();
+            } catch (SQLException e) {
+                showMessageDialog("LANCOU EXCESSAO");
+            }
             showMessageDialog("Carregou a tabela, primeira cidade = "+ingressos.get(0).cidade);
             // TEM QUE IMPRIMIR OS INGRESSOS
 

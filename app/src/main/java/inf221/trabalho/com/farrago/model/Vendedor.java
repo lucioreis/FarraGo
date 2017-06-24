@@ -1,12 +1,17 @@
 package inf221.trabalho.com.farrago.model;
 
+import com.j256.ormlite.field.DatabaseField;
+
 import java.util.*;
 
 public class Vendedor extends Perfil {
-
+	@DatabaseField(generatedId = true)
+	int idVendedor;
 	Collection<Comprador> avalia;
+	@DatabaseField(unique = true)
 	private int cpf;
 	private List<Ingresso> ingressosVenda;
+	@DatabaseField(columnName = avaliacao)
 	private int avaliacao;
 
 	public int getCpf() {

@@ -94,3 +94,40 @@ foreign=true
 # --table-fields-end--
 # --table-end--
 #################################
+
+#################################
+# --table-start--
+dataClass=inf221.trabalho.com.farrago.model.Comprador
+tableName=TabComprador
+# --table-fields-start--
+# --field-start--
+fieldName=idComprador
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=cpf
+unique=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=inf221.trabalho.com.farrago.model.Vendedor
+tableName=TabVendedor
+# --table-fields-start--
+# --field-start--
+fieldName=idVendedor
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=cpf
+unique=true
+# --field-end--
+# --field-start--
+fieldName=avaliacao
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
