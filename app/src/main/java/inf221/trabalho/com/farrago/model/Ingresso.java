@@ -41,63 +41,63 @@ public class Ingresso implements Serializable {
 		this.disponivel = disp;
 	}
 
+	public void setEvento(Evento e){
+		evento = e;
+	}
+	public Evento getEvento(){
+		return evento;
+	}
+
+	public Integer getNumero() {
+		return this.numero;
+	}
+
+	/**
+	 *
+	 * @param numero
+	 */
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	public Float getPreco() {
+		return this.preco;
+	}
+
+	/**
+	 *
+	 * @param preco
+	 */
+	public void setPreco(Float preco) {
+		this.preco = preco;
+	}
+
+	public Integer getLote() {
+		return this.lote;
+	}
+
+	/**
+	 *
+	 * @param lote
+	 */
+	public void setLote(Integer lote) {
+		this.lote = lote;
+	}
+
+	public int getTipoDeIngresso() {
+		return this.tipoDeIngresso;
+	}
+
+	/**
+	 *
+	 * @param tipoDeIngresso
+	 */
+	public void setTipoDeIngresso(int tipoDeIngresso) {
+		this.tipoDeIngresso = tipoDeIngresso;
+	}
+
+	@Override
+	public String toString(){
+		return evento.getNomeDoEvento();
+	}
 }
-//	public void setEvento(Evento e){
-//		evento = e;
-//	}
-//	public Evento getEvento(){
-//		return evento;
-//	}
-//
-//	public Integer getNumero() {
-//		return this.numero;
-//	}
-//
-//	/**
-//	 *
-//	 * @param numero
-//	 */
-//	public void setNumero(Integer numero) {
-//		this.numero = numero;
-//	}
-//
-//	public Float getPreco() {
-//		return this.preco;
-//	}
-//
-//	/**
-//	 *
-//	 * @param preco
-//	 */
-//	public void setPreco(Float preco) {
-//		this.preco = preco;
-//	}
-//
-//	public Integer getLote() {
-//		return this.lote;
-//	}
-//
-//	/**
-//	 *
-//	 * @param lote
-//	 */
-//	public void setLote(Integer lote) {
-//		this.lote = lote;
-//	}
-//
-//	public int getTipoDeIngresso() {
-//		return this.tipoDeIngresso;
-//	}
-//
-//	/**
-//	 *
-//	 * @param tipoDeIngresso
-//	 */
-//	public void setTipoDeIngresso(int tipoDeIngresso) {
-//		this.tipoDeIngresso = tipoDeIngresso;
-//	}
-//
-//	@Override
-//	public String toString(){
-//		return evento.getNomeDoEvento();
-//	}

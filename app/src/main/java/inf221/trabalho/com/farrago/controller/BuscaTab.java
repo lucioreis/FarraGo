@@ -16,10 +16,6 @@ import java.util.List;
 import inf221.trabalho.com.farrago.R;
 import inf221.trabalho.com.farrago.model.FachadaSingleton;
 
-/**
- * Created by lucio on 6/22/2017.
- */
-
 public class BuscaTab extends Fragment {
     private int resource;
     private Spinner spinnerNomeDoEvento, spinnerTag, spinnerTema, spinnerCidadesIngressoTab, spinnerCidadesEventoTab, spinnerFaixa;

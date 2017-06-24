@@ -1,6 +1,6 @@
 package inf221.trabalho.com.farrago.controller;
 
-
+/*
 import java.sql.SQLException;
 import java.util.*;
 import android.app.Activity;
@@ -90,3 +90,4 @@ public class IngressoAddActivity extends Activity implements OnClickListener {
 
 
 }
+*/

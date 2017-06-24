@@ -18,10 +18,6 @@ import inf221.trabalho.com.farrago.model.Evento;
 import inf221.trabalho.com.farrago.model.Ingresso;
 import inf221.trabalho.com.farrago.util.PersonalizadoArrayAdapter;
 
-/**
- * Created by lucio on 6/20/2017.
- */
-
 public class ResultadoDaBusca extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstance){
@@ -31,7 +27,7 @@ public class ResultadoDaBusca extends AppCompatActivity{
             List<Ingresso> ingressos = new ArrayList<>();
 
             List<Evento> eventos = new ArrayList<>();
-            /*
+
             Evento evento = new Evento();
             evento.setNomeDoEvento("Festa de aniversario de Coragen o Cão Covarde");
             evento.setData(new java.sql.Date(11,11,11));
@@ -55,7 +51,7 @@ public class ResultadoDaBusca extends AppCompatActivity{
                             .putExtra("evento", (Evento) listView.getItemAtPosition(position)));
                 }
             });
-            */
+
     }
 
     public void voltar(View v){

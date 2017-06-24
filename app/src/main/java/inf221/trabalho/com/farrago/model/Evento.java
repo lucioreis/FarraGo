@@ -39,101 +39,99 @@ public class Evento implements Serializable {
 		this.numeroDeIngressos = nIng;
 	}
 
-}
+	public String getNomeDoEvento() {
+		return this.nomeDoEvento;
+	}
 
-//	public String getNomeDoEvento() {
-//		return this.nomeDoEvento;
-//	}
-//
-//	/**
-//	 *
-//	 * @param nomeDoEvento
-//	 */
-//	public void setNomeDoEvento(String nomeDoEvento) {
-//		this.nomeDoEvento = nomeDoEvento;
-//	}
-//
-//	public String getLocal() {
-//		return this.local;
-//	}
-//
-//	/**
-//	 *
-//	 * @param local
-//	 */
-//	public void setLocal(String local) {
-//		this.local = local;
-//	}
-//
-//	public Date getData() {
-//		return this.data;
-//	}
-//
-//	/**
-//	 *
-//	 * @param data
-//	 */
-//	public void setData(Date data) {
-//		this.data = data;
-//	}
-//
-//	public Time getHorario() {
-//		return this.horario;
-//	}
-//
-//	/**
-//	 *
-//	 * @param horario
-//	 */
-//	public void setHorario(Time horario) {
-//		this.horario = horario;
-//	}
-//
-//	public int getFaixaEtaria() {
-//		return this.faixaEtaria;
-//	}
-//
-//	/**
-//	 *
-//	 * @param faixaEtaria
-//	 */
-//	public void setFaixaEtaria(int faixaEtaria) {
-//		this.faixaEtaria = faixaEtaria;
-//	}
-//
-//	public Ingresso getIngresso() {
-//		return this.ingresso;
-//	}
-//
-//	/**
-//	 *
-//	 * @param ingresso
-//	 */
-//	public void setIngresso(Ingresso ingresso) {
-//		this.ingresso = ingresso;
-//	}
-//
-//	public int getNumeroDeIngressos() {
-//		return this.numeroDeIngressos;
-//	}
-//
-//	/**
-//	 *
-//	 * @param numeroDeIngressos
-//	 */
-//	public void setNumeroDeIngressos(int numeroDeIngressos) {
-//		this.numeroDeIngressos = numeroDeIngressos;
-//	}
-//
-//	/**
-//	 *
-//	 * @param numeroDeIngressos
-//	 * @param preco
-//	 * @param tipoDeIngresso
-//	 */
-//	public void cadastraIngressos(int numeroDeIngressos, float preco, int lote, int tipoDeIngresso) {
-//		ingresso = new Ingresso(numeroDeIngressos, preco, lote, tipoDeIngresso);
-//		this.numeroDeIngressos = numeroDeIngressos;
-//	}
-//
-//}
+	/**
+	 *
+	 * @param nomeDoEvento
+	 */
+	public void setNomeDoEvento(String nomeDoEvento) {
+		this.nomeDoEvento = nomeDoEvento;
+	}
+
+	public String getLocal() {
+		return this.cidade;
+	}
+
+	/**
+	 *
+	 * @param local
+	 */
+	public void setLocal(String local) {
+		this.cidade = local;
+	}
+
+	public Date getData() {
+		return this.data;
+	}
+
+	/**
+	 *
+	 * @param data
+	 */
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public Time getHorario() {
+		return this.horario;
+	}
+
+	/**
+	 *
+	 * @param horario
+	 */
+	public void setHorario(Time horario) {
+		this.horario = horario;
+	}
+
+	public int getFaixaEtaria() {
+		return this.faixaEtaria;
+	}
+
+	/**
+	 *
+	 * @param faixaEtaria
+	 */
+	public void setFaixaEtaria(int faixaEtaria) {
+		this.faixaEtaria = faixaEtaria;
+	}
+
+	public Ingresso getIngresso() {
+		return this.ingresso;
+	}
+
+	/**
+	 *
+	 * @param ingresso
+	 */
+	public void setIngresso(Ingresso ingresso) {
+		this.ingresso = ingresso;
+	}
+
+	public int getNumeroDeIngressos() {
+		return this.numeroDeIngressos;
+	}
+
+	/**
+	 *
+	 * @param numeroDeIngressos
+	 */
+	public void setNumeroDeIngressos(int numeroDeIngressos) {
+		this.numeroDeIngressos = numeroDeIngressos;
+	}
+
+	/**
+	 *
+	 * @param numeroDeIngressos
+	 * @param preco
+	 * @param tipoDeIngresso
+	 */
+	public void cadastraIngressos(int numeroDeIngressos, float preco, int lote, int tipoDeIngresso) {
+		ingresso = new Ingresso(numeroDeIngressos, preco, lote, tipoDeIngresso);
+		this.numeroDeIngressos = numeroDeIngressos;
+	}
+
+}

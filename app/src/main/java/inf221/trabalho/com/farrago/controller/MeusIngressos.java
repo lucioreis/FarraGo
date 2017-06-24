@@ -44,7 +44,7 @@ public class MeusIngressos extends AppCompatActivity {
         evento.setLocal("Casa da Muriel");
         evento.setNumeroDeIngressos(123);
         evento.getIngresso().setEvento(evento);
-        ingressos.add(evento.getIngresso());
+        ingressos.add(evento.getIngresso());*/
 
         PersonalizadoArrayAdapter arrayAdapter = new PersonalizadoArrayAdapter(ingressos, this);
 
