@@ -11,7 +11,7 @@ public class Vendedor extends Perfil {
 	@DatabaseField(unique = true)
 	private int cpf;
 	private List<Ingresso> ingressosVenda;
-	@DatabaseField(columnName = avaliacao)
+	@DatabaseField(columnName = "avaliacao")
 	private int avaliacao;
 
 	public int getCpf() {

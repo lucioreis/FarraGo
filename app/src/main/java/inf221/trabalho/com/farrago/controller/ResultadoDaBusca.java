@@ -33,7 +33,7 @@ public class ResultadoDaBusca extends AppCompatActivity{
             evento.setData(new java.sql.Date(11,11,11));
             evento.setFaixaEtaria(11);
             evento.setHorario(new Time(11,11,11));
-            evento.cadastraIngressos(11,11f,11,11);
+            //evento.cadastraIngressos(11,11f,11,11);
             evento.setLocal("Casa da Muriel");
             evento.setNumeroDeIngressos(123);
             evento.getIngresso().setEvento(evento);

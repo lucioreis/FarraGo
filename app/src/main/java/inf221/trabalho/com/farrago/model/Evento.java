@@ -129,9 +129,9 @@ public class Evento implements Serializable {
 	 * @param preco
 	 * @param tipoDeIngresso
 	 */
-	public void cadastraIngressos(int numeroDeIngressos, float preco, int lote, int tipoDeIngresso) {
+	/*public void cadastraIngressos(int numeroDeIngressos, float preco, int lote, int tipoDeIngresso) {
 		ingresso = new Ingresso(numeroDeIngressos, preco, lote, tipoDeIngresso);
 		this.numeroDeIngressos = numeroDeIngressos;
-	}
+	}*/
 
 }

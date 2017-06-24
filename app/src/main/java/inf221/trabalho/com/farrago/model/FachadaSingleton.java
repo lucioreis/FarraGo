@@ -26,7 +26,7 @@ import inf221.trabalho.com.farrago.model.Ingresso;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
-public final class FachadaSingleton {
+public final class FachadaSingleton extends Activity {
     private static final FachadaSingleton ourInst = new FachadaSingleton();
 
     private DatabaseHelper databaseHelper = null;
@@ -57,8 +57,12 @@ public final class FachadaSingleton {
             nomeDeCidade = new ArrayList<>();
         }
         if(EventoDao == null){
-            EventoDao = getHelper().getEventoDao();
-            eventos = EventoDao.queryForAll();
+            try {
+                EventoDao = getHelper().getEventoDao();
+                eventos = EventoDao.queryForAll();
+            } catch (SQLException e) {
+                // OI OI
+            }
             Date d = new Date();
             for(int i = 0; i < eventos.size(); i++)
                 if(eventos.get(i).data.after(d) || eventos.get(i).data.equals(d))
@@ -75,6 +79,12 @@ public final class FachadaSingleton {
 
     }
 
+    /*@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.busca_tab_ingressos);
+    }*/
+
     private DatabaseHelper getHelper() {
         if (databaseHelper == null) {
             databaseHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
@@ -87,15 +97,19 @@ public final class FachadaSingleton {
             tags = new ArrayList<>();
         }
         if(EventoDao == null){
-            EventoDao = getHelper().getEventoDao();
-            eventos = EventoDao.queryForAll();
+            try {
+                EventoDao = getHelper().getEventoDao();
+                eventos = EventoDao.queryForAll();
+            } catch (SQLException e) {
+                // OI OI
+            }
             Date d = new Date();
             for(int i = 0; i < eventos.size(); i++)
                 if(eventos.get(i).data.after(d) || eventos.get(i).data.equals(d))
                     eventos.remove(i);
         }
 
-        Set<String> tagsDiferentes;
+        Set<String> tagsDiferentes = new HashSet<>();
         for(int i = 0; i < eventos.size(); i++){
             if(!tagsDiferentes.contains(eventos.get(i).tag)) {
                 tagsDiferentes.add(eventos.get(i).tag);
@@ -111,15 +125,23 @@ public final class FachadaSingleton {
     private void daoUser(){
         int idUser = 123456; // Nao existe login no nosso sistema. Entao tem que supor um id de usuario
         if(CompradorDao == null){
-            CompradorDao = getHelper().getCompradorDao();
-            compradores = CompradorDao.queryForAll();
+            try {
+                CompradorDao = getHelper().getCompradorDao();
+                compradores = CompradorDao.queryForAll();
+            }  catch (SQLException e) {
+                // OI OI
+            }
         }
         if(CompradorIngressoDao == null){
-            CompradorIngressoDao = getHelper().getCompradorIngressoDao();
-            compradorIngressos = CompradorIngressoDao.queryForAll();
+            try {
+                CompradorIngressoDao = getHelper().getCompradorIngressoDao();
+                compradorIngressos = CompradorIngressoDao.queryForAll();
+            } catch (SQLException e) {
+                // OI OI
+            }
         }
         List<Ingresso> meusIngressos = new ArrayList<>();
-        int cpf;
+        int cpf=-1;
 
         for(int i = 0; i < compradores.size(); i++)
             if(compradores.get(i).getIdComprador() == idUser){
@@ -148,8 +170,12 @@ public final class FachadaSingleton {
         List<Evento> eventosSemFiltros = new ArrayList<>();
         Date d = new Date();
         if(EventoDao == null){
-            EventoDao = getHelper().getEventoDao();
-            eventos = EventoDao.queryForAll();
+            try {
+                EventoDao = getHelper().getEventoDao();
+                eventos = EventoDao.queryForAll();
+            } catch (SQLException e) {
+                // OI OI
+            }
             for(int i = 0; i < eventos.size(); i++)
                 if(eventosSemFiltros.get(i).data.after(d) || eventosSemFiltros.get(i).data.equals(d))
                     eventos.remove(i);
@@ -167,10 +193,10 @@ public final class FachadaSingleton {
                     eventosSemFiltros.remove(i);
             }
         }
-        if(tags != null && tags.length() > 0) { // selecionar por tag
+        if(tags != null && tags.length > 0) { // selecionar por tag
             for (int i = 0; i < eventosSemFiltros.size(); i++) {
                 boolean deu = false;
-                for (int j = 0; j < tags.length(); j++) {
+                for (int j = 0; j < tags.length; j++) {
                     if (eventosSemFiltros.get(i).tag.equals(tags[i]))
                         deu = true;
                 }
@@ -183,18 +209,20 @@ public final class FachadaSingleton {
     public List<Ingresso> getIngressosPorCida(String nomeDeAlgumaCidade, String nomeDoEvento, int reputacaoDosVendedores){
         List<Ingresso> ingressosSemFiltros;
         if(IngressoDao == null){
-            IngressoDao = getHelper().getIngressoDao();
-            ingressos = IngressoDao.queryForAll();
+            try {
+                IngressoDao = getHelper().getIngressoDao();
+                ingressos = IngressoDao.queryForAll();
+            } catch (SQLException e) {
+                // OI OI
+            }
             for(int i = 0; i < ingressos.size(); i++)
                 if(!ingressos.get(i).disponivel) ingressos.remove(i);
         }
         ingressosSemFiltros = ingressos;
 
-        if(reputacaoDosVendedores != null){
-            for(int i = 0; i < ingressosSemFiltros.size(); i++)
-                if(ingressosSemFiltros.get(i).vendedor.getAvaliacao() < reputacaoDosVendedores)
-                    ingressosSemFiltros.remove(i);
-        }
+        for(int i = 0; i < ingressosSemFiltros.size(); i++)
+            if(ingressosSemFiltros.get(i).vendedor.getAvaliacao() < reputacaoDosVendedores)
+                ingressosSemFiltros.remove(i);
 
         if(nomeDeAlgumaCidade != null && !nomeDeAlgumaCidade.isEmpty()){
             for(int i = 0; i < ingressosSemFiltros.size(); i++)

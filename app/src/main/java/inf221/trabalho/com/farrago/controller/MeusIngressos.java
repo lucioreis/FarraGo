@@ -35,16 +35,16 @@ public class MeusIngressos extends AppCompatActivity {
         setContentView(R.layout.activity_meus_ingressos);
         final ListView listView = (ListView) findViewById(R.id.lista_de_ingressos);
         List<Ingresso> ingressos = new ArrayList<>();
-        /*Evento evento = new Evento();
+        Evento evento = new Evento();
         evento.setNomeDoEvento("Festa de aniversario de Coragen o Cão Covarde");
         evento.setData(new java.sql.Date(11,11,11));
         evento.setFaixaEtaria(11);
         evento.setHorario(new Time(11,11,11));
-        evento.cadastraIngressos(11,11f,11,11);
+        //evento.cadastraIngressos(11,11f,11,11);
         evento.setLocal("Casa da Muriel");
         evento.setNumeroDeIngressos(123);
         evento.getIngresso().setEvento(evento);
-        ingressos.add(evento.getIngresso());*/
+        ingressos.add(evento.getIngresso());
 
         PersonalizadoArrayAdapter arrayAdapter = new PersonalizadoArrayAdapter(ingressos, this);
 
@@ -55,7 +55,6 @@ public class MeusIngressos extends AppCompatActivity {
                 createPopupImage(listView, position);
             }
         });
-        */
     }
 
     public void createPopupImage(ListView listView, int position) {
